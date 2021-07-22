@@ -24,22 +24,20 @@ public class Program {
 		System.out.print("Name: ");
 		String name = sc.nextLine();
 		System.out.print("Email: ");
-		String email = sc.nextLine();
+		String email = sc.next();
 		System.out.print("Birth date (DD/MM/YYYY): " );
 		Date birthDate = sdf.parse(sc.next()); 
 		
 		Client c1 = new Client(name, email, birthDate);
 		
 		System.out.println("Enter order data: ");
-		sc.nextLine();
 		System.out.print("Status: ");
-		String orderStatus = sc.nextLine();
+		OrderStatus status = OrderStatus.valueOf(sc.next());
 		
-		Order order = new Order(new Date(), OrderStatus.valueOf(orderStatus), c1);
+		Order order = new Order(new Date(), status, c1);
 		
 		System.out.print("How many items to this order?");
 		int qtdOrder = sc.nextInt();
-		
 		for(int i = 1; i<=qtdOrder; i++) {
 			System.out.println("Enter #"+i+" item data:");
 			sc.nextLine();
@@ -47,14 +45,15 @@ public class Program {
 			String productName = sc.nextLine();
 			System.out.print("Product price: ");
 			double productPrice = sc.nextDouble();
-			System.out.println("Quantity:");
+			System.out.print("Quantity:");
 			int quantity = sc.nextInt();
 			
 			Product p = new Product(productName, productPrice);
-			OrderItem oItem = new OrderItem(quantity,p.getPrice(),p);
+			OrderItem oItem = new OrderItem(quantity,productPrice,p);
 			
 			order.addItem(oItem);
 		}
+		System.out.println();
 		System.out.println(order);
 		sc.close();
 	}

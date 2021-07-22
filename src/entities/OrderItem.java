@@ -6,7 +6,6 @@ public class OrderItem {
 	private Product product;
 	
 	public OrderItem() {
-		
 	}
 
 	public OrderItem(int quantity, double price, Product product) {
@@ -41,6 +40,16 @@ public class OrderItem {
 	
 	public double subTotal() {
 		return quantity*price;
+	}
+	
+	public String toString() {
+		return getProduct().getName()
+				+", $"
+				+String.format("%.2f", price)
+				+", Quantity: "
+				+quantity
+				+", Subtotal: $"
+				+String.format("%.2f",subTotal());
 	}
 	
 }
